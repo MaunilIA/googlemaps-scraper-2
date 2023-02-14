@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
@@ -196,16 +197,19 @@ class GoogleMapsScraper:
 
         # wait for other reviews to load (ajax)
         time.sleep(4)
-
-        self.__scroll()
-
-        # expand review text
+        print("1")
         self.__expand_reviews()
-        time.sleep(2)
+        print("2")
+        self.__scroll()
+        print("3")
+        # expand review text
+        # time.sleep(2)
         # parse reviews
         response = BeautifulSoup(self.driver.page_source, 'html.parser')
+        print("4")
         # TODO: Subject to changes
         rblock = response.find_all('div', class_='jftiEf fontBodyMedium')
+        print("5")
         parsed_reviews = []
         for index, review in enumerate(rblock):
             if index >= offset:
@@ -345,11 +349,16 @@ class GoogleMapsScraper:
         # use XPath to load complete reviews
         # TODO: Subject to changes
         links = self.driver.find_elements_by_xpath('//button[@jsaction="pane.review.expandReview"]') #@class="w8nwRe kyuRq"
-        for _, l in enumerate(links):
+        print(f"found {len(links)} 'more' buttons")
+        print("2.1")
+        for idx, l in enumerate(links):
             try:
                 l.click()
-            except:
+                print(f"{idx} clicked")
+            except StaleElementReferenceException as e:
                 pass
+             
+        print("2.2")
         time.sleep(2)
 
 

@@ -32,7 +32,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Google Maps reviews scraper.')
     parser.add_argument('--N', type=int, default=1000, help='Number of reviews to scrape')
     parser.add_argument('--i', type=str, default=f'urls/url_0.txt', help='target URLs file')
-    parser.add_argument('--sort_by', type=str, default='most_relevant', help='most_relevant, newest, highest_rating or lowest_rating')
+    parser.add_argument('--sort_by', type=str, default='newest', help='most_relevant, newest, highest_rating or lowest_rating')
     parser.add_argument('--place', dest='place', action='store_true', help='Scrape place metadata')
     parser.add_argument('--debug', dest='debug', action='store_true', help='Run scraper using browser graphical interface')
     parser.add_argument('--source', dest='source', action='store_true', help='Add source url to CSV file (for multiple urls in a single file)')
