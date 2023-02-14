@@ -4,7 +4,8 @@
 2) navigate inside the cloned directory.
 3) run the following command: pip install -r requirements.txt
 4) run the following command: python scraper.py --N 1000 --sort_by most_relevant
-5) corresponding CSV files will stored in url_data/
+5) urls are stored in urls/ and will be read by the scraper.py as soon as it is executed.
+6) corresponding CSV files will stored in url_data/
 
 Scraper of Google Maps reviews.
 The code allows to extract the **most recent** reviews starting from the url of a specific Point Of Interest (POI) in Google Maps.
