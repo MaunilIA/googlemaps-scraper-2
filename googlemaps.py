@@ -400,7 +400,7 @@ class GoogleMapsScraper:
 
         options.add_argument("--disable-notifications")
         options.add_argument("--lang=en-GB")
-        input_driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(),options=options)#log_level=0
+        input_driver = webdriver.Chrome(executable_path=ChromeDriverManager(log_level=0).install(),options=options)#
 
          # click on google agree button so we can continue (not needed anymore)
          # EC.element_to_be_clickable((By.XPATH, '//span[contains(text(), "I agree")]')))
